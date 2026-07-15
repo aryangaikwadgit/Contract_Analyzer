@@ -1,6 +1,6 @@
 # Contract Analyzer
 
-<<<<<<< HEAD
+ HEAD
 **AI-powered employment contract analysis: understand what you're signing before you sign it.**
 =======
 **AI-powered employment contract analysis - understand what you're signing before you sign it.**
