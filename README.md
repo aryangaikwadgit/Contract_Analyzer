@@ -108,7 +108,7 @@ Once a contract is analyzed, you can ask follow-up questions like *"what are the
 |---|---|
 | Backend | FastAPI, Python |
 | Frontend | Streamlit |
-| LLM / Orchestration | LangChain, Groq (`llama-4-scout-17b-16e-instruct`), Cerebras (overflow fallback) |
+| LLM / Orchestration | LangChain, Groq (`llama-4-scout-17b-16e-instruct`)|
 | Embeddings | Hugging Face |
 | Vector Store | FAISS |
 | Validation | Pydantic |
