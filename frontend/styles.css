@@ -1,0 +1,15 @@
+.stButton>button{
+    width:100%;
+    height:50px;
+    font-size:18px;
+    border-radius:10px;
+}
+
+.stMetric{
+    text-align:center;
+}
+
+.block-container{
+    padding-top:2rem;
+    max-width:1200px;
+}

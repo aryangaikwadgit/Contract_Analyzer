@@ -1,10 +1,8 @@
 import json
-
 import faiss
-
 import numpy as np
 
-from src.embeddings import Embedder
+from src.embedder import Embedder
 
 
 class VectorStore:
@@ -15,38 +13,27 @@ class VectorStore:
 
         self.index = None
 
-        self.clauses = []
+        self.documents = []
 
-    def load_data(self):
+    def build_index(self, path):
 
-        with open("data/risky_clauses.json", "r") as file:
+        with open(path, "r") as file:
+            self.documents = json.load(file)
 
-            data = json.load(file)
+        # return self.documents, type(self.documents), self.documents[0]
 
-        self.clauses = data
+        clauses = [
+            x["clause"] for x in self.documents
+        ]  # return only list of context clauses
 
-        vectors = []
+        embeddings = self.embedder.encode(clauses)  # encoding context clauses
 
-        for item in data:
+        embeddings = np.array(embeddings, dtype=np.float32)  #
 
-            vector = self.embedder.encode(item["clause"])
-
-            vectors.append(vector)
-
-        vectors = np.array(vectors)
-
-        dimension = vectors.shape[1]
+        dimension = embeddings.shape[1]
 
         self.index = faiss.IndexFlatL2(dimension)
 
-        self.index.add(vectors)
+        self.index.add(embeddings)
 
-    def search(self, query):
 
-        query_vector = self.embedder.encode(query)
-
-        query_vector = np.array([query_vector])
-
-        distances, indices = self.index.search(query_vector, 1)
-
-        return self.clauses[indices[0][0]]
