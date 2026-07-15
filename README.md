@@ -1,10 +1,9 @@
 # Contract Analyzer
 
- HEAD
 **AI-powered employment contract analysis: understand what you're signing before you sign it.**
 =======
 **AI-powered employment contract analysis - understand what you're signing before you sign it.**
->>>>>>> 446bedcaf180d1602ab0fd906ba610a16da25694
+
 
 > **Note:** Contract Analyzer is currently built specifically for **employment contracts**. It is not a general-purpose contract analysis tool.
 
