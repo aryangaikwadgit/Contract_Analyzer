@@ -1,6 +1,6 @@
 # Contract Analyzer
 
-**AI-powered employment contract analysis — understand what you're signing before you sign it.**
+**AI-powered employment contract analysis: understand what you're signing before you sign it.**
 
 > **Note:** Contract Analyzer is currently built specifically for **employment contracts**. It is not a general-purpose contract analysis tool.
 
@@ -10,7 +10,7 @@ Contract Analyzer parses employment contracts, retrieves relevant legal context 
 
 ## Why Contract Analyzer
 
-Employment contracts are full of dense, one-sided legal language. Most people sign without fully understanding clauses around IP assignment, non-competes, termination terms, or confidentiality. Contract Analyzer breaks the contract down clause by clause, scores each one against a curated employment-law knowledge base, and tells you — in plain language — what to watch out for and how to push back.
+Employment contracts are full of dense, one-sided legal language. Most people sign without fully understanding clauses around IP assignment, non-competes, termination terms, or confidentiality. Contract Analyzer breaks the contract down clause by clause, scores each one against a curated employment-law knowledge base, and tells you, in plain language, what to watch out for and how to push back.
 
 ## Features
 
@@ -50,12 +50,12 @@ Interactive Contract Q&A
 
 ### Pipeline Stages
 
-1. **Clause Extraction** — the contract is parsed and split into individual clauses.
-2. **Semantic Retrieval** — each clause is embedded and matched against a 25-entry employment-law knowledge base to ground the analysis.
-3. **LLM Legal Analysis** — each clause is broken down into its **Meaning**, **Risk** classification, a plain-English **Explanation**, and a **Negotiation Tip** (or a note that no negotiation is needed if the clause is already balanced).
-4. **Risk Scoring** — individual clause scores roll up into an overall contract risk score and level.
-5. **Report Generation** — a structured report with summary, high-attention clauses, and full clause-level detail.
-6. **Contract Assistant** — ask natural-language questions about the analyzed contract and get grounded answers.
+1. **Clause Extraction**: the contract is parsed and split into individual clauses.
+2. **Semantic Retrieval**: each clause is embedded and matched against a 25-entry employment-law knowledge base to ground the analysis.
+3. **LLM Legal Analysis**: each clause is broken down into its **Meaning**, **Risk** classification, a plain-English **Explanation**, and a **Negotiation Tip** (or a note that no negotiation is needed if the clause is already balanced).
+4. **Risk Scoring**: individual clause scores roll up into an overall contract risk score and level.
+5. **Report Generation**: a structured report with summary, high-attention clauses, and full clause-level detail.
+6. **Contract Assistant**: ask natural-language questions about the analyzed contract and get grounded answers.
 
 ## Example Output
 
@@ -91,13 +91,13 @@ Explanation
   [Why the clause received this risk classification]
 
 Negotiation Tip
-  [Suggested language or approach — or "No negotiation
+  [Suggested language or approach, or "No negotiation
   needed" if the clause is already balanced]
 ```
 
 **Contract Assistant**
 
-Once a contract is analyzed, you can ask follow-up questions like *"what are the risky clauses in it?"* and get answers grounded in the actual clause-level report — including which clauses were reviewed, their risk scores, and why they were classified that way.
+Once a contract is analyzed, you can ask follow-up questions like *"what are the risky clauses in it?"* and get answers grounded in the actual clause-level report, including which clauses were reviewed, their risk scores, and why they were classified that way.
 
 ## Tech Stack
 
@@ -109,35 +109,45 @@ Once a contract is analyzed, you can ask follow-up questions like *"what are the
 | Embeddings | Hugging Face |
 | Vector Store | FAISS |
 | Validation | Pydantic |
-| Document Processing | PyMuPDF |
+| Document Processing (digital PDFs) | PyMuPDF (fitz) |
+| Document Processing (scanned PDFs) | Tesseract OCR |
 
 ## Project Structure
 
 ```
-ContractAnalyzer/
+Contract_Analyzer/
 ├── backend/
-│   ├── app.py
+│   ├── main.py
 │   ├── routes.py
-│   └── service.py
+│   └── schemas.py
 ├── frontend/
-│   ├── Home.py
-│   ├── Dashboard.py
-│   ├── Chat.py
-│   └── components.py
+│   ├── __init__.py
+│   ├── api.py
+│   ├── components.py
+│   └── styles.css
 ├── src/
 │   ├── clause_extractor.py
-│   ├── rag_chain.py
-│   ├── vector_db.py
-│   ├── scorer.py
-│   ├── report_generator.py
-│   ├── question_answer.py
-│   ├── prompts.py
+│   ├── clause_splitter.py
+│   ├── config.py
+│   ├── contract_ai_pipeline.py
+│   ├── embedder.py
+│   ├── memory.py
 │   ├── models.py
-│   └── config.py
-├── data/
-├── requirements.txt
+│   ├── ocr.py
+│   ├── pdf_parser.py
+│   ├── prompts.py
+│   ├── question_answer.py
+│   ├── rag_chain.py
+│   ├── report_generator.py
+│   ├── retriever.py
+│   ├── scorer.py
+│   ├── token_tracker.py
+│   └── vector_store.py
+├── .gitignore
+├── app.py
+├── LICENSE
 ├── README.md
-└── .env
+└── requirements.txt
 ```
 
 ## Installation
@@ -167,13 +177,13 @@ MODEL_NAME=meta-llama/llama-4-scout-17b-16e-instruct
 Run the backend:
 
 ```bash
-uvicorn backend.app:app --reload
+uvicorn backend.main:app --reload
 ```
 
 Run the frontend:
 
 ```bash
-streamlit run frontend/Home.py
+streamlit run app.py
 ```
 
 ## API Endpoints
@@ -187,7 +197,6 @@ streamlit run frontend/Home.py
 
 - [ ] Multi-language contract support
 - [ ] Side-by-side comparison of multiple contracts
-- [ ] OCR for scanned PDFs
 - [ ] Contract version diffing
 - [ ] Clause recommendation engine
 - [ ] Organization-specific legal knowledge bases
@@ -197,7 +206,7 @@ streamlit run frontend/Home.py
 
 ## Contributing
 
-Contributions are welcome — fork the repo, create a feature branch, and open a pull request.
+Contributions are welcome: fork the repo, create a feature branch, and open a pull request.
 
 ## License
 
@@ -205,4 +214,4 @@ MIT License.
 
 ---
 
-⭐ If Contract Analyzer is useful to you, consider starring the repo — it helps others find it.
+⭐ If Contract Analyzer is useful to you, consider starring the repo. It helps others find it.
